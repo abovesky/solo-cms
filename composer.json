@@ -1,0 +1,36 @@
+{
+  "name": "abovesky/solo-cms",
+  "description": "the new thinkphp cms",
+  "type": "project",
+  "keywords": [
+    "thinkphp",
+    "CMS"
+  ],
+  "homepage": "http://thinkphp.cn/",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "tianshaofeng",
+      "email": "abovesky@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "topthink/framework": "5.1.*",
+    "topthink/think-migration": "2.*",
+    "firebase/php-jwt": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "app\\": "application"
+    }
+  },
+  "extra": {
+    "think-path": "thinkphp"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "repositories": {
+  }
+}
