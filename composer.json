@@ -18,7 +18,10 @@
     "php": ">=7.1.0",
     "topthink/framework": "5.1.*",
     "topthink/think-migration": "2.*",
-    "firebase/php-jwt": "^5.0"
+    "firebase/php-jwt": "^5.0",
+    "abovesky/solo-cms-core": "dev-master",
+    "abovesky/think-utils": "dev-master",
+    "abovesky/think-annotation-validate": "dev-master"
   },
   "autoload": {
     "psr-4": {

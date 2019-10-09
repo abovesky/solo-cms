@@ -5,7 +5,7 @@ namespace app\lib\file;
 use think\facade\Config;
 use SoloCms\model\File as Attachment;
 use app\lib\exception\file\FileException;
-use LinCmsTp\File;
+use Utils\File;
 use think\facade\Env;
 
 /**
