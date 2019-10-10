@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 沁塵
- * Date: 2019/2/19
- * Time: 9:59
- */
 
 namespace app\lib\auth;
-
 
 use WangYu\Reflex;
 

@@ -2,7 +2,7 @@
 
 use think\migration\Migrator;
 
-class User extends Migrator
+class Admin extends Migrator
 {
     /**
      * Change Method.
@@ -27,13 +27,14 @@ class User extends Migrator
      */
     public function change()
     {
-        $table = $this->table('user', array('engine' => 'InnoDB'));
-        $table->addColumn('nickname', 'string', array('limit' => 24))
+        $table = $this->table('admin', array('engine' => 'InnoDB'));
+        $table->addColumn('group_id', 'integer', array('limit' => 11, 'default' => 0))
+            ->addColumn('nickname', 'string', array('limit' => 24))
             ->addColumn('password', 'string', array('limit' => 100))
             ->addColumn('email', 'string', array('limit' => 100))
-            ->addColumn('admin', 'integer', array('limit' => 6, 'default' => 1, 'comment' => '是否为超级管理员 ; 1 -> 普通用户 | 2 -> 超级管理员'))
-            ->addColumn('active', 'integer', array('limit' => 6, 'default' => 1))
-            ->addColumn('group_id', 'integer', array('limit' => 11, 'null' => 'null'))
+            ->addColumn('avatar', 'string', array('limit' => 255))
+            ->addColumn('is_super', 'integer', array('limit' => 1, 'default' => 0, 'comment' => '是否为超级管理员 ; 0 -> 否 | 1 -> 是'))
+            ->addColumn('status', 'integer', array('limit' => 1, 'default' => 1, 'comment' => '状态 ; 1 -> 正常 | 2 -> 禁用'))
             ->addTimestamps('create_time', 'update_time')
             ->addSoftDelete()
             ->addIndex(array('nickname', 'email'))

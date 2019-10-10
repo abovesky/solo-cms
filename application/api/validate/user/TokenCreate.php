@@ -4,7 +4,7 @@ namespace app\api\validate\user;
 
 use SoloCms\validate\BaseValidate;
 
-class LoginForm extends BaseValidate
+class TokenCreate extends BaseValidate
 {
     protected $rule = [
         'nickname' => 'require',

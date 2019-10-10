@@ -4,7 +4,7 @@ namespace app\lib\token;
 
 use app\lib\exception\token\TokenException;
 use Firebase\JWT\JWT;
-use SoloCms\model\User;
+use SoloCms\model\Admin;
 use think\Exception;
 use think\facade\Request;
 
@@ -69,7 +69,7 @@ class Token
     public static function getCurrentUser()
     {
         $uid = self::getCurrentUID();
-        $user = User::get($uid);
+        $user = Admin::get($uid);
         return $user->hidden(['password']);
     }
 

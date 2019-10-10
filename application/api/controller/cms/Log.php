@@ -2,7 +2,7 @@
 
 namespace app\api\controller\cms;
 
-use SoloCms\model\Log;
+use SoloCms\model\AdminLog;
 use think\Request;
 
 class Log
@@ -21,7 +21,7 @@ class Log
     {
         $params = $request->get();
 
-        $result = Log::getLogs($params);
+        $result = AdminLog::getLogs($params);
         return $result;
     }
 
@@ -38,7 +38,7 @@ class Log
     {
         $params = $request->get();
 
-        $result = Log::getLogs($params);
+        $result = AdminLog::getLogs($params);
         return $result;
     }
 
@@ -48,7 +48,7 @@ class Log
      */
     public function getUsers()
     {
-        $users = Log::column('user_name');
+        $users = AdminLog::column('user_name');
         $result = array_unique($users);
         return $result;
     }

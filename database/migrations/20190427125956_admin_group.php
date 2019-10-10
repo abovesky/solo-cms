@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class Group extends Migrator
+class AdminGroup extends Migrator
 {
     /**
      * Change Method.
@@ -28,7 +28,7 @@ class Group extends Migrator
      */
     public function change()
     {
-        $table = $this->table('group', array('engine' => 'InnoDB'));
+        $table = $this->table('admin_group', array('engine' => 'InnoDB'));
         $table->addColumn('name', 'string', array('limit' => 60))
             ->addColumn('info', 'string', array('limit' => 255, 'null' => 'null'))
             ->create();

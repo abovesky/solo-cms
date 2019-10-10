@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class AddAvatar extends Migrator
+class AdminAuth extends Migrator
 {
     /**
      * Change Method.
@@ -28,9 +28,10 @@ class AddAvatar extends Migrator
      */
     public function change()
     {
-        $table = $this->table('user', array('engine' => 'InnoDB'));
-
-        $table->addColumn('avatar', 'string', array('null' => 'null', 'limit' => 255))
-            ->update();
+        $table = $this->table('admin_auth', array('engine' => 'InnoDB'));
+        $table->addColumn('group_id', 'integer', array('limit' => 11))
+            ->addColumn('auth', 'string', array('limit' => 60))
+            ->addColumn('module', 'string', array('limit' => 50))
+            ->create();
     }
 }

@@ -13,49 +13,56 @@ use think\facade\Route;
 
 Route::group('', function () {
     Route::group('cms', function () {
-        // 账户相关接口分组
-        Route::group('user', function () {
-            // 登陆接口
-            Route::post('login', 'api/cms.User/login');
+        // 授权相关
+        Route::group('token', function () {
+            // 创建令牌
+            Route::post('create', 'api/cms.Token/create');
             // 刷新令牌
-            Route::get('refresh', 'api/cms.User/refresh');
-            // 查询自己拥有的权限
-            Route::get('auths', 'api/cms.User/getAllowedApis');
-            // 注册一个用户
-            Route::post('register', 'api/cms.User/register');
-            // 更新头像
-            Route::put('avatar','api/cms.User/setAvatar');
-            // 查询自己信息
-            Route::get('information','api/cms.User/getInformation');
+            Route::get('refresh', 'api/cms.Token/refresh');
         });
-        // 管理类接口
+        // 管理员相关
         Route::group('admin', function () {
-            // 查询所有权限组
-            Route::get('group/all', 'api/cms.Admin/getGroupAll');
-            // 查询一个权限组及其权限
-            Route::get('group/:id', 'api/cms.Admin/getGroup');
-            // 删除一个权限组
-            Route::delete('group/:id', 'api/cms.Admin/deleteGroup');
-            // 更新一个权限组
-            Route::put('group/:id', 'api/cms.Admin/updateGroup');
-            // 新建权限组
-            Route::post('group', 'api/cms.Admin/createGroup');
-            // 查询所有可分配的权限
-            Route::get('authority', 'api/cms.Admin/authority');
-            // 删除多个权限
-            Route::post('remove', 'api/cms.Admin/removeAuths');
-            // 添加多个权限
-            Route::post('/dispatch/patch', 'api/cms.Admin/dispatchAuths');
-            // 查询所有用户
-            Route::get('users', 'api/cms.Admin/getAdminUsers');
-            // 修改用户密码
-            Route::put('password/:uid', 'api/cms.Admin/changeUserPassword');
-            // 删除用户
+            // 查询自己拥有的权限
+            Route::get('auths', 'api/cms.Admin/getAllowedApis');
+            // 添加管理员
+            Route::post('', 'api/cms.Admin/createUser');
+            // 当前管理员信息
+            Route::get('info','api/cms.Admin/getInfo');
+            // 管理员列表
+            Route::get('list', 'api/cms.Admin/getUsers');
+            // 修改管理员密码
+            Route::put('password/:uid', 'api/cms.Admin/changePassword');
+            // 删除一个管理员
             Route::delete(':uid', 'api/cms.Admin/deleteUser');
-            // 更新用户信息
+            // 更新管理员信息
             Route::put(':uid', 'api/cms.Admin/updateUser');
-
+            // 更新管理员头像
+            Route::put('avatar','api/cms.Admin/updateAvatar');
         });
+        // 分组相关
+        Route::group('group', function () {
+            // 分组列表
+            Route::get('list', 'api/cms.Group/getGroups');
+            // 查询一个分组及其权限
+            Route::get(':id', 'api/cms.Group/getGroup');
+            // 删除分组
+            Route::delete(':id', 'api/cms.Group/deleteGroup');
+            // 更新分组
+            Route::put(':id', 'api/cms.Group/updateGroup');
+            // 新建分组
+            Route::post('', 'api/cms.Group/createGroup');
+        });
+
+        // 权限相关
+        Route::group('auth', function () {
+            // 查询所有可分配的权限
+            Route::get('list', 'api/cms.Auth/getAuths');
+            // 删除多个权限
+            Route::delete('remove', 'api/cms.Auth/removeAuths');
+            // 分配多个权限
+            Route::post('dispatch', 'api/cms.Auth/dispatchAuths');
+        });
+
         // 日志类接口
         Route::get('log/', 'api/cms.Log/getLogs');
         Route::get('log/users', 'api/cms.Log/getUsers');

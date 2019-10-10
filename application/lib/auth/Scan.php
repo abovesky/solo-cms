@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\lib\auth;
-
 
 use think\facade\Env;
 
@@ -39,7 +37,7 @@ class Scan
      * @param string $subModule 可空，目标目录的子目录
      * @return array 控制器层下所有类的完整命名空间数组
      */
-    private  function  scanControllerLayerDir(string $path,string $subModule=''){
+    private  function  scanControllerLayerDir(string $path, string $subModule=''){
         $files = scandir($path);
         foreach ($files as $file){
             if ($file !== '.' && $file !== '..'){

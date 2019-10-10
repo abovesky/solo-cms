@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class File extends Migrator
+class Attachment extends Migrator
 {
     /**
      * Change Method.
@@ -28,7 +28,7 @@ class File extends Migrator
      */
     public function change()
     {
-        $table = $this->table('file', array('engine' => 'InnoDB'));
+        $table = $this->table('attachment', array('engine' => 'InnoDB'));
         $table->addColumn('path', 'string', array('limit' => 500,'comment'=>'路径'))
             ->addColumn('type', 'integer', array('limit' => 6,'comment'=>'1 local，其他表示其他地方'))
             ->addColumn('name', 'string', array('limit' => 100,'comment'=>'名称'))

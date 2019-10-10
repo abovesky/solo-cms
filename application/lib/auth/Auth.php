@@ -3,7 +3,7 @@
 namespace app\lib\auth;
 
 use app\lib\token\Token;
-use SoloCms\model\User;
+use SoloCms\model\Admin;
 use app\lib\exception\token\DeployException;
 
 class Auth
@@ -38,7 +38,7 @@ class Auth
         // 账户信息，包含所拥有的权限列表
         $userAuth = $this->userAuth();
         //账户属于超级管理员，直接通过
-        if ($userAuth['admin'] == 2) return true;
+        if ($userAuth['is_super'] == 1) return true;
         // 遍历账户权限字段，格式化数组格式供后续判断
         $authList = $this->recursiveForeach($userAuth['auths']);
         // 判断接口权限是否在账户拥有权限数组内
@@ -77,7 +77,7 @@ class Auth
     protected function userAuth()
     {
         $uid = Token::getCurrentUID();
-        $user = User::getUserByUID($uid);
+        $user = Admin::getUserByUID($uid);
 
         return $user;
 

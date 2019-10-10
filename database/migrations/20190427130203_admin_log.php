@@ -3,7 +3,7 @@
 use think\migration\Migrator;
 use think\migration\db\Column;
 
-class Auth extends Migrator
+class AdminLog extends Migrator
 {
     /**
      * Change Method.
@@ -28,10 +28,15 @@ class Auth extends Migrator
      */
     public function change()
     {
-        $table = $this->table('auth', array('engine' => 'InnoDB'));
-        $table->addColumn('group_id', 'integer', array('limit' => 11))
-            ->addColumn('auth', 'string', array('limit' => 60))
-            ->addColumn('module', 'string', array('limit' => 50))
+        $table = $this->table('admin_log', array('engine' => 'InnoDB'));
+        $table->addColumn('user_id', 'integer', array('limit' => 11))
+            ->addColumn('user_name', 'string', array('limit' => 20))
+            ->addColumn('status_code', 'integer', array('limit' => 11))
+            ->addColumn('method', 'string', array('limit' => 20))
+            ->addColumn('path', 'string', array('limit' => 50))
+            ->addColumn('message', 'string', array('limit' => 450))
+            ->addColumn('authority', 'string', array('limit' => 100))
+            ->addColumn('create_time', 'datetime', array('null' => false))
             ->create();
     }
 }

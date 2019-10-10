@@ -4,7 +4,7 @@ namespace app\api\behavior;
 
 use app\lib\token\Token;
 use SoloCms\exception\logger\LoggerException;
-use SoloCms\model\Log;
+use SoloCms\model\AdminLog;
 use think\facade\Request;
 use think\facade\Response;
 
@@ -35,15 +35,15 @@ class Logger
         }
 
         $data = [
-            'message' => $nickname . $message,
             'user_id' => $uid,
             'user_name' => $nickname,
             'status_code' => Response::getCode(),
             'method' => Request::method(),
             'path' => Request::path(),
+            'message' => $nickname . $message,
             'authority' => ''
         ];
 
-        Log::create($data);
+        AdminLog::create($data);
     }
 }
